@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './star-rating.scss'
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 
@@ -11,13 +10,7 @@ const feelings = [
     { star: 5, text: 'Tuyệt vời luôn' },
 ]
 
-export default function StarRating() {
-    const [star, setStar] = useState(0)
-
-    const handlePreview = () => {
-        alert(`You give the store: ${star}`)
-    }
-
+export default function StarRating({ setStar, star, handlePreview }) {
     return (
         <Flex
             justify={'center'}
@@ -26,8 +19,9 @@ export default function StarRating() {
             py={20}
             direction={'column'}
             h={'100vh'}
+            id="star"
         >
-            <div className="feedback">
+            <Box className="feedback" shadow={'xl'}>
                 <div className="rating">
                     <input
                         type="radio"
@@ -398,14 +392,22 @@ export default function StarRating() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Box>
             <Box py={2}>
-                <Text fontWeight={'semibold'} fontSize={'lg'}>
+                <Text
+                    fontWeight={'semibold'}
+                    fontSize={'lg'}
+                    color={'whitesmoke'}
+                >
                     {feelings[star].text}
                 </Text>
             </Box>
             <Box py={5}>
-                <Button colorScheme={'teal'} onClick={handlePreview}>
+                <Button
+                    colorScheme={'orange'}
+                    onClick={handlePreview}
+                    shadow={'lg'}
+                >
                     Đánh giá
                 </Button>
             </Box>

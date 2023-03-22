@@ -68,26 +68,6 @@
     z-index: 1;
 }
 
-.emoji-wrapper:before {
-    top: 0;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 1) 35%,
-        rgba(255, 255, 255, 0) 100%
-    );
-}
-
-.emoji-wrapper:after {
-    bottom: 0;
-    background: linear-gradient(
-        to top,
-        rgba(255, 255, 255, 1) 0%,
-        rgba(255, 255, 255, 1) 35%,
-        rgba(255, 255, 255, 0) 100%
-    );
-}
-
 .emoji {
     display: flex;
     flex-direction: column;
@@ -120,7 +100,6 @@
 
 .feedback {
     max-width: 360px;
-    background-color: #fff;
     width: 100%;
     padding: 30px;
     border-radius: 8px;
