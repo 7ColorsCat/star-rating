@@ -12,4 +12,21 @@ export const AutheServices = {
             },
         })
     },
+    rating: info => {
+        const { store, phone, star } = info
+        return axios.post(
+            '/',
+            {
+                Store: store,
+                Phone: phone,
+                Star: star,
+                Time: 'DATETIME',
+            },
+            {
+                params: {
+                    sheet: 'Rating',
+                },
+            }
+        )
+    },
 }

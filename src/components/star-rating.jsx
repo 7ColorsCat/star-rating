@@ -10,7 +10,7 @@ const feelings = [
     { star: 5, text: 'Tuyệt vời luôn' },
 ]
 
-export default function StarRating({ setStar, star, handlePreview }) {
+export default function StarRating({ setStar, star, handlePreview, loading }) {
     return (
         <Flex
             justify={'center'}
@@ -407,6 +407,7 @@ export default function StarRating({ setStar, star, handlePreview }) {
                     colorScheme={'orange'}
                     onClick={handlePreview}
                     shadow={'lg'}
+                    isLoading={loading}
                 >
                     Đánh giá
                 </Button>

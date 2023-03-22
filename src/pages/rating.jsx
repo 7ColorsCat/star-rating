@@ -9,20 +9,36 @@ import {
 } from '@chakra-ui/react'
 import StarRating from '../components/star-rating'
 import { useState } from 'react'
+import { AutheServices } from '../services/axios'
+import { useNavigate } from 'react-router-dom'
 
-export default function Rating() {
+export default function Rating({ store }) {
     const [info, setInfo] = useState({ phone: '', star: 0 })
+    const navigate = useNavigate()
     const onchangeHandler = e => {
         const { name, value } = e.target
         setError(false)
         setInfo({ ...info, [name]: value })
     }
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const setStar = star => setInfo({ ...info, star })
-    const handlePreview = () => {
+    const handlePreview = async () => {
         if (info.phone === '') {
             window.scrollTo(0, 0)
             setError(true)
+            return false
+        }
+
+        try {
+            setLoading(true)
+            const data = { ...info, store }
+            const newRating = await AutheServices.rating(data)
+            if (newRating.status === 201) navigate('/thankyou')
+        } catch (error) {
+            console.log(error.message)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -41,7 +57,6 @@ export default function Rating() {
                         type="tel"
                         placeholder="Số điện thoại khách hàng"
                         variant={'filled'}
-                        color={'whitesmoke'}
                         name="phone"
                         onChange={onchangeHandler}
                         textAlign={'center'}
@@ -62,6 +77,7 @@ export default function Rating() {
                 setStar={setStar}
                 star={info.star}
                 handlePreview={handlePreview}
+                loading={loading}
             />
         </Box>
     )
