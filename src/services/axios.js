@@ -1,6 +1,10 @@
 import axios from 'axios'
+import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
+dayjs.extend(timezone)
+dayjs.tz.setDefault('Asia/Ho_Chi_Minh')
 
 export const AutheServices = {
     login: ({ store, password }) => {
@@ -20,7 +24,7 @@ export const AutheServices = {
                 Store: store,
                 Phone: phone,
                 Star: star,
-                Time: 'DATETIME',
+                Time: dayjs().format('DD-MM-YYYY HH:mm:ss'),
             },
             {
                 params: {
