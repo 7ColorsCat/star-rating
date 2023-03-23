@@ -36,9 +36,15 @@ export default function Login({ loading, onLoggin, error }) {
             align={'center'}
             direction={'column'}
             gap={5}
-            bgGradient="linear-gradient(to right, #1d976c, #93f9b9)"
+            bgGradient="radial-gradient( #FD9204, #FBC366)"
         >
-            <Box p={4} bg={'whitesmoke'} rounded={'xl'}>
+            <Box
+                p={4}
+                shadow={'lg'}
+                border={'1px'}
+                borderColor={'whiteAlpha.500'}
+                rounded={'xl'}
+            >
                 <Heading fontSize={'3xl'} fontWeight={'light'} pb={4}>
                     Đăng nhập để sử dụng
                 </Heading>
@@ -73,11 +79,13 @@ export default function Login({ loading, onLoggin, error }) {
 
                     <Button
                         type="submit"
-                        colorScheme={'green'}
                         w={'full'}
                         mt={4}
                         isLoading={loading}
                         loadingText="Đang đăng nhập"
+                        bg="#120C04"
+                        color={'white'}
+                        _hover={{ bg: '#120C04' }}
                     >
                         Đăng nhập
                     </Button>

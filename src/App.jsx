@@ -48,5 +48,5 @@ export default function App() {
             />
         )
 
-    return <Rating store={store?.Store} />
+    return <Rating store={store?.Store} setStore={setStore} />
 }

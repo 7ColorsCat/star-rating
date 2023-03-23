@@ -1,18 +1,11 @@
-import {
-    Box,
-    Button,
-    Container,
-    Flex,
-    Input,
-    Link,
-    Text,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Input, Link, Text } from '@chakra-ui/react'
 import StarRating from '../components/star-rating'
 import { useState } from 'react'
 import { AutheServices } from '../services/axios'
 import { useNavigate } from 'react-router-dom'
+import Logout from '../components/logout'
 
-export default function Rating({ store }) {
+export default function Rating({ store, setStore }) {
     const [info, setInfo] = useState({ phone: '', star: 0 })
     const navigate = useNavigate()
     const onchangeHandler = e => {
@@ -43,42 +36,50 @@ export default function Rating({ store }) {
     }
 
     return (
-        <Box bgGradient="linear-gradient(to right, #1d976c, #93f9b9)">
-            <Container w={{ sm: 'container.sm' }}>
-                <Flex
-                    h={'100vh'}
-                    justify={'center'}
-                    align={'center'}
-                    direction={'column'}
-                    gap={4}
-                >
-                    <Text fontStyle={'italic'}>Số điện thoại khách hàng</Text>
-                    <Input
-                        type="tel"
-                        placeholder="Số điện thoại khách hàng"
-                        variant={'filled'}
-                        name="phone"
-                        onChange={onchangeHandler}
-                        textAlign={'center'}
-                    />
-                    {error ? (
-                        <Text color={'red'} fontSize={'sm'}>
-                            Vui lòng nhập số điện thoại
-                        </Text>
-                    ) : null}
-                    <Link href="#star" w={'full'}>
-                        <Button colorScheme="orange" w={'full'}>
-                            Tiếp
-                        </Button>
-                    </Link>
-                </Flex>
-            </Container>
+        <Box>
+            <Flex
+                h={'100vh'}
+                justify={'center'}
+                align={'center'}
+                direction={'column'}
+                gap={4}
+                bgGradient="radial-gradient( #FD9204, #FBC366)"
+            >
+                <Heading fontStyle={'italic'}>Số điện thoại khách hàng</Heading>
+                <Input
+                    type="tel"
+                    placeholder="Số điện thoại khách hàng"
+                    variant={'filled'}
+                    name="phone"
+                    onChange={onchangeHandler}
+                    textAlign={'center'}
+                    w={{ sm: 'sm', base: 'xs' }}
+                />
+                {error ? (
+                    <Text color={'red'} fontSize={'sm'}>
+                        Vui lòng nhập số điện thoại
+                    </Text>
+                ) : null}
+                <Link href="#star" w={'sm'} textAlign={'center'}>
+                    <Button
+                        bg="#120C04"
+                        color={'white'}
+                        _hover={{ bg: '#120C04' }}
+                        w={{ sm: 'sm', base: 'xs' }}
+                    >
+                        Tiếp
+                    </Button>
+                </Link>
+            </Flex>
+
             <StarRating
                 setStar={setStar}
                 star={info.star}
                 handlePreview={handlePreview}
                 loading={loading}
+                bgGradient="radial-gradient( #FD9204, #FBC366)"
             />
+            <Logout setStore={setStore} />
         </Box>
     )
 }

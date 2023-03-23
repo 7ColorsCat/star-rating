@@ -1,16 +1,23 @@
 import './star-rating.scss'
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import LikeIcon from '../assets/like.svg'
 
 const feelings = [
     { star: 0, text: 'Khó tả' },
     { star: 1, text: 'Không hài lòng' },
     { star: 2, text: 'Thất vọng' },
-    { star: 3, text: 'Tốt' },
+    { star: 3, text: 'Bình thường' },
     { star: 4, text: 'Hài lòng' },
     { star: 5, text: 'Tuyệt vời luôn' },
 ]
 
-export default function StarRating({ setStar, star, handlePreview, loading }) {
+export default function StarRating({
+    setStar,
+    star,
+    handlePreview,
+    loading,
+    ...props
+}) {
     return (
         <Flex
             justify={'center'}
@@ -20,8 +27,10 @@ export default function StarRating({ setStar, star, handlePreview, loading }) {
             direction={'column'}
             h={'100vh'}
             id="star"
+            {...props}
         >
-            <Box className="feedback" shadow={'xl'}>
+            <Heading>Bạn cảm thấy thế nào?</Heading>
+            <Box className="feedback" pos={'relative'}>
                 <div className="rating">
                     <input
                         type="radio"
@@ -392,24 +401,48 @@ export default function StarRating({ setStar, star, handlePreview, loading }) {
                         </div>
                     </div>
                 </div>
-            </Box>
-            <Box py={2}>
-                <Text
-                    fontWeight={'semibold'}
-                    fontSize={'lg'}
-                    color={'whitesmoke'}
+                <Box
+                    py={2}
+                    pos={'absolute'}
+                    bg={'whitesmoke'}
+                    left={'65%'}
+                    rounded={'xl'}
+                    roundedBottomLeft={'none'}
+                    _before={{
+                        content: `''`,
+                        width: '0px',
+                        height: '0px',
+                        position: 'absolute',
+                        left: '-10px',
+                        bottom: '0',
+                        borderLeft: '5px solid transparent',
+                        borderTop: '5px solid transparent',
+                        borderRight: '5px solid white',
+                        borderBottom: '5px solid white',
+                    }}
                 >
-                    {feelings[star].text}
-                </Text>
+                    <Text
+                        fontWeight={'semibold'}
+                        fontSize={'md'}
+                        color={'gray.700'}
+                        px={4}
+                        whiteSpace={{ sm: 'nowrap' }}
+                    >
+                        {feelings[star].text}
+                    </Text>
+                </Box>
             </Box>
             <Box py={5}>
                 <Button
-                    colorScheme={'orange'}
+                    bg="#120C04"
+                    color={'white'}
+                    _hover={{ bg: '#120C04' }}
                     onClick={handlePreview}
-                    shadow={'lg'}
                     isLoading={loading}
+                    w={{ sm: 'sm', base: 'xs' }}
                 >
-                    Đánh giá
+                    Xong
+                    <Image src={LikeIcon} boxSize={8} ml={4} />
                 </Button>
             </Box>
         </Flex>
