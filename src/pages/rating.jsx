@@ -5,7 +5,7 @@ import { AutheServices } from '../services/axios'
 import { useNavigate } from 'react-router-dom'
 import Logout from '../components/logout'
 
-export default function Rating({ store, setStore }) {
+export default function Rating({ store, setstore }) {
     const [info, setInfo] = useState({ phone: '', star: 0 })
     const navigate = useNavigate()
     const onchangeHandler = e => {
@@ -79,7 +79,7 @@ export default function Rating({ store, setStore }) {
                 loading={loading}
                 bgGradient="radial-gradient( #FD9204, #FBC366)"
             />
-            <Logout setStore={setStore} />
+            <Logout setstore={setstore} />
         </Box>
     )
 }

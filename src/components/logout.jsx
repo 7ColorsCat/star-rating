@@ -1,5 +1,4 @@
 import { Button } from '@chakra-ui/react'
-import LogoutIcon from '../assets/logout.svg'
 import { useNavigate } from 'react-router-dom'
 
 export default function Logout(props) {
@@ -7,23 +6,20 @@ export default function Logout(props) {
     const handleLogout = () => {
         localStorage.removeItem('star-rating')
         navigate('/')
-        props.setStore({})
+        props.setstore({})
     }
     return (
         <Button
             pos={'fixed'}
             right={'2rem'}
             top={'4rem'}
-            boxSize={'50px'}
-            rounded={'full'}
+            rounded={'lg'}
             border={'1px'}
             borderColor={'whitesmoke'}
-            bgImg={LogoutIcon}
-            bgSize={'cover'}
-            _hover={'none'}
-            _active={'none'}
-            {...props}
             onClick={handleLogout}
-        ></Button>
+            bgColor={'transparent'}
+        >
+            Đăng xuất
+        </Button>
     )
 }

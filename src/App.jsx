@@ -22,7 +22,7 @@ export default function App() {
                         'star-rating',
                         JSON.stringify(res.data[0])
                     )
-                    setStore(JSON.stringify(res.data[0]))
+                    setStore(res.data[0])
                 } else {
                     if (isSubmit) setError(true)
                 }
@@ -48,5 +48,5 @@ export default function App() {
             />
         )
 
-    return <Rating store={store?.Store} setStore={setStore} />
+    return <Rating store={store.Store} setstore={setStore} />
 }
