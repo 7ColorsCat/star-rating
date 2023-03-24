@@ -29,7 +29,7 @@ export default function StarRating({
             id="star"
             {...props}
         >
-            <Heading>Bạn cảm thấy thế nào?</Heading>
+            <Heading>Đánh giá trải nghiệm mua hàng tại APJ</Heading>
             <Box className="feedback" pos={'relative'}>
                 <div className="rating">
                     <input
