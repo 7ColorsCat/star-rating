@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import Login from './components/login'
 import Rating from './pages/rating'
 import { AutheServices } from './services/axios'
@@ -33,11 +33,6 @@ export default function App() {
             return setLoading(false)
         }
     }
-
-    useLayoutEffect(() => {
-        login(store)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     if (Object.keys(store).length === 0)
         return (
